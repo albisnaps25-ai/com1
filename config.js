@@ -2,7 +2,7 @@
 
 const CONFIG = {
   BASE_URL: "https://sexyesmma.site/",
-  PAGE_TITLE: "Emma's Live Shows",
+  PAGE_TITLE: "EVA's Live Shows",
   USERNAME: "PREttysina",
   PROFILE_IMAGE: "gallery_gen/emma_profile.png",
   BANNER_IMAGE: "gallery/Generated.png",
