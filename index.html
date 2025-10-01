@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Page title will be injected from config.js -->
+  <!-- Page Title injected from config.js -->
   <title id="page-title">Loading…</title>
-  <!-- Base href for links, injected from config.js -->
+  <!-- Base URL injected from config.js -->
   <base id="base-href" href="">
   <!-- CSS bundles -->
   <link rel="stylesheet" href="css/common-bundle.css">
@@ -14,14 +14,14 @@
 
   <div id="wb_root" class="root wb-layout-vertical">
 
-    <!-- Header: Profile picture popup -->
+    <!-- Header: Profile Popup Picture -->
     <div id="wb_header" class="wb-element wb-layout-element">
       <div class="wb_content wb-layout-vertical">
         <div class="wb_element wb-layout-element" data-plugin="Picture">
           <div class="wb_picture_wrap">
             <div class="wb-picture-wrapper">
               <a id="profile-link" href="javascript:void(0);">
-                <img id="profile-img" loading="lazy" alt="Profile image" src="" />
+                <img id="profile-img" loading="lazy" alt="Profile image" src="">
               </a>
             </div>
           </div>
@@ -29,27 +29,27 @@
       </div>
     </div>
 
-    <!-- Main section: buttons and gallery -->
+    <!-- Main Content: Buttons + Gallery -->
     <div id="wb_main" class="wb-element wb-layout-element">
       <div class="wb_content wb-layout-vertical">
 
-        <!-- Explicit Content button -->
+        <!-- Explicit Content Button -->
         <div class="wb_element" data-plugin="Button">
           <a class="wb_button" href="javascript:void(0);" id="button-explicit">
             <span>Explicit Content</span>
           </a>
         </div>
 
-        <!-- +18 Livestream button -->
+        <!-- +18 Livestream Button -->
         <div class="wb_element" data-plugin="Button">
           <a class="wb_button" href="javascript:void(0);" id="button-18">
             <span>+18 Livestream</span>
           </a>
         </div>
 
-        <!-- Gallery (initially empty) -->
+        <!-- Gallery Section -->
         <div class="wb_element wb_gallery" data-plugin="Gallery" id="gallery">
-          <!-- Images will be loaded via JS -->
+          <!-- Slides initialized by JS -->
         </div>
 
       </div>
@@ -57,13 +57,13 @@
 
   </div>
 
-  <!-- Load configuration first -->
+  <!-- 1. Load site configuration -->
   <script src="config.js"></script>
   <script>
     // Apply configuration values from config.js
     const c = window.SiteConfig;
 
-    // Set page title
+    // Set document title
     document.getElementById('page-title').textContent = c.PAGE_TITLE;
 
     // Set base href
@@ -76,27 +76,27 @@
     );
     document.getElementById('profile-img').src = c.PROFILE_IMAGE;
 
-    // Apply same popup to buttons
+    // Apply same popup to both buttons
     document.getElementById('button-explicit').dataset.popup = profileLink.dataset.popup;
     document.getElementById('button-18').dataset.popup = profileLink.dataset.popup;
 
-    // If there's a second picture link in header (banner), set affiliate link and image
-    const bannerAnchor = document.querySelector('#wb_header .wb-picture-wrapper a');
+    // If header contains a second picture (banner), set link and image
+    const bannerAnchor = document.querySelector('#wb_header .wb-picture-wrapper a:nth-child(2)');
     if (bannerAnchor) {
       bannerAnchor.href = c.AFFILIATE_LINK;
       const bannerImg = bannerAnchor.querySelector('img');
       if (bannerImg) bannerImg.src = c.BANNER_IMAGE;
     }
 
-    // Initialize gallery (empty by default)
+    // Initialize the gallery (empty by default)
     if (window.WBGallery && typeof WBGallery.setup === 'function') {
       WBGallery.setup('gallery', {
-        images: [] // Provide array of {thumb, src, width, height, title, link} if needed
+        images: [] // Add objects like {thumb, src, width, height, title, link:{url,target}} here if needed
       });
     }
   </script>
 
-  <!-- Load JS bundles last -->
+  <!-- 2. Load CSS/JS bundles required by your template -->
   <script src="js/common-bundle.js" type="text/javascript"></script>
   <script src="js/a188dda851df00d03fbe9110eacd609d-bundle.js" type="text/javascript"></script>
 </body>
