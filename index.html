@@ -2,19 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Page Title injected from config.js -->
   <title id="page-title">Loading…</title>
-  <!-- Base URL injected from config.js -->
   <base id="base-href" href="">
-  <!-- CSS bundles -->
   <link rel="stylesheet" href="css/common-bundle.css">
-  <link rel="stylesheet" href="css/a188dda851df00d03fbe9110eacd609d-bundle.css" id="wb-page-stylesheet">
+  <link rel="stylesheet" href="css/a188dda851df00d03fbe9110eacd609d-bundle.css">
 </head>
 <body class="site site-lang-en">
-
   <div id="wb_root" class="root wb-layout-vertical">
-
-    <!-- Header: Profile Popup Picture -->
     <div id="wb_header" class="wb-element wb-layout-element">
       <div class="wb_content wb-layout-vertical">
         <div class="wb_element wb-layout-element" data-plugin="Picture">
@@ -28,76 +22,35 @@
         </div>
       </div>
     </div>
-
-    <!-- Main Content: Buttons + Gallery -->
     <div id="wb_main" class="wb-element wb-layout-element">
       <div class="wb_content wb-layout-vertical">
-
-        <!-- Explicit Content Button -->
         <div class="wb_element" data-plugin="Button">
-          <a class="wb_button" href="javascript:void(0);" id="button-explicit">
-            <span>Explicit Content</span>
-          </a>
+          <a class="wb_button" href="javascript:void(0);" id="button-explicit"><span>Explicit Content</span></a>
         </div>
-
-        <!-- +18 Livestream Button -->
         <div class="wb_element" data-plugin="Button">
-          <a class="wb_button" href="javascript:void(0);" id="button-18">
-            <span>+18 Livestream</span>
-          </a>
+          <a class="wb_button" href="javascript:void(0);" id="button-18"><span>+18 Livestream</span></a>
         </div>
-
-        <!-- Gallery Section -->
-        <div class="wb_element wb_gallery" data-plugin="Gallery" id="gallery">
-          <!-- Slides initialized by JS -->
-        </div>
-
+        <div class="wb_element wb_gallery" data-plugin="Gallery" id="gallery"></div>
       </div>
     </div>
-
   </div>
-
-  <!-- 1. Load site configuration -->
   <script src="config.js"></script>
   <script>
-    // Apply configuration values from config.js
     const c = window.SiteConfig;
-
-    // Set document title
     document.getElementById('page-title').textContent = c.PAGE_TITLE;
-
-    // Set base href
-    document.getElementById('base-href').setAttribute('href', c.BASE_URL);
-
-    // Configure profile popup link and image
-    const profileLink = document.getElementById('profile-link');
-    profileLink.setAttribute('data-popup',
-      `wb_popup:${c.USERNAME}/?wbPopupMode=1;w=400;h=600;pagePopup=1;`
-    );
+    document.getElementById('base-href').href = c.BASE_URL;
+    const pl = document.getElementById('profile-link');
+    pl.dataset.popup = `wb_popup:${c.USERNAME}/?wbPopupMode=1;w=400;h=600;pagePopup=1;`;
     document.getElementById('profile-img').src = c.PROFILE_IMAGE;
-
-    // Apply same popup to both buttons
-    document.getElementById('button-explicit').dataset.popup = profileLink.dataset.popup;
-    document.getElementById('button-18').dataset.popup = profileLink.dataset.popup;
-
-    // If header contains a second picture (banner), set link and image
-    const bannerAnchor = document.querySelector('#wb_header .wb-picture-wrapper a:nth-child(2)');
-    if (bannerAnchor) {
-      bannerAnchor.href = c.AFFILIATE_LINK;
-      const bannerImg = bannerAnchor.querySelector('img');
-      if (bannerImg) bannerImg.src = c.BANNER_IMAGE;
-    }
-
-    // Initialize the gallery (empty by default)
-    if (window.WBGallery && typeof WBGallery.setup === 'function') {
-      WBGallery.setup('gallery', {
-        images: [] // Add objects like {thumb, src, width, height, title, link:{url,target}} here if needed
-      });
+    document.getElementById('button-explicit').dataset.popup = pl.dataset.popup;
+    document.getElementById('button-18').dataset.popup = pl.dataset.popup;
+    const ba = document.querySelector('#wb_header .wb-picture-wrapper a');
+    if (ba) { ba.href = c.AFFILIATE_LINK; ba.querySelector('img').src = c.BANNER_IMAGE; }
+    if (window.WBGallery && WBGallery.setup) {
+      WBGallery.setup('gallery',{images:[]});
     }
   </script>
-
-  <!-- 2. Load CSS/JS bundles required by your template -->
-  <script src="js/common-bundle.js" type="text/javascript"></script>
-  <script src="js/a188dda851df00d03fbe9110eacd609d-bundle.js" type="text/javascript"></script>
+  <script src="js/common-bundle.js"></script>
+  <script src="js/a188dda851df00d03fbe9110eacd609d-bundle.js"></script>
 </body>
 </html>
