@@ -5,7 +5,7 @@ const CONFIG = {
   PAGE_TITLE: "Emma's Live Shows",
   USERNAME: "PREttysina",
   PROFILE_IMAGE: "gallery_gen/emma_profile.png",
-  BANNER_IMAGE: "gallery/emma_banner.gif",
+  BANNER_IMAGE: "gallery/Generated.png",
   AFFILIATE_LINK: "https://example.com/emma-signup"
 };
 
